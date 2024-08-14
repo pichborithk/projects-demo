@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      username: pichborith
+      password: password
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 8090
