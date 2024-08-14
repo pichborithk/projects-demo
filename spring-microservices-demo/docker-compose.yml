@@ -1,0 +1,43 @@
+services:
+  postgresql:
+    container_name: ms_pg_sql
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: pichborith
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  mongodb:
+    container_name: ms_mongo_db
+    image: mongo
+    volumes:
+      - mongo:/data
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=pichborith
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  mail-dev:
+    container_name: ms-mail-dev
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  microservices-net:
+    driver: bridge
+
+volumes:
+  postgres:
+  mongo:
+
+
