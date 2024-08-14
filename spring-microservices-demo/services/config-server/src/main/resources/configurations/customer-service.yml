@@ -7,9 +7,6 @@ spring:
       port: 27017
       database: customer
       authentication-database: admin
-  output:
-    ansi:
-      enabled: ALWAYS
 
 server:
   port: 8090
