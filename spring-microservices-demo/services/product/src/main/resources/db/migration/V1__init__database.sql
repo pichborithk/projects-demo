@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS category (
-    id SERIAL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY,
     name VARCHAR(255),
     description VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS product (
-    id SERIAL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY,
     name VARCHAR(255),
     description VARCHAR(255),
     available_quantity DOUBLE PRECISION NOT NULL,
