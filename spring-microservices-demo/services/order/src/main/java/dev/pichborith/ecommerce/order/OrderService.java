@@ -7,6 +7,8 @@ import dev.pichborith.ecommerce.kafka.OrderConfirmation;
 import dev.pichborith.ecommerce.kafka.OrderProducer;
 import dev.pichborith.ecommerce.orderline.OrderLineRequest;
 import dev.pichborith.ecommerce.orderline.OrderLineService;
+import dev.pichborith.ecommerce.payment.PaymentClient;
+import dev.pichborith.ecommerce.payment.PaymentRequest;
 import dev.pichborith.ecommerce.product.ProductClient;
 import dev.pichborith.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -27,7 +29,7 @@ public class OrderService {
     private final ProductClient productClient;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
-//    private final PaymentClient paymentClient;
+    private final PaymentClient paymentClient;
 
     @Transactional
     public Integer createOrder(OrderRequest request) {
@@ -57,14 +59,14 @@ public class OrderService {
         }
 
         // start payment process
-//        var paymentRequest = new PaymentRequest(
-//            request.amount(),
-//            request.paymentMethod(),
-//            order.getId(),
-//            order.getReference(),
-//            customer
-//        );
-//        paymentClient.requestOrderPayment(paymentRequest);
+        var paymentRequest = new PaymentRequest(
+            request.amount(),
+            request.paymentMethod(),
+            order.getId(),
+            order.getReference(),
+            customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
 
         // send the order confirmation --> notification-service (kafka)
         orderProducer.sendOrderConfirmation(
