@@ -51,7 +51,7 @@ public class UserController {
             throw new BadRequestException("Missing Information");
         }
 
-        String jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(newUser);
         ResponseDto<TokenDto> response = new ResponseDto<>("Register new user successful");
         response.setData(new TokenDto(jwtToken));
 
@@ -67,8 +67,9 @@ public class UserController {
             )
         );
 
-        String jwtToken = jwtService.generateToken(user);
-        ResponseDto<TokenDto> response = new ResponseDto<TokenDto>("Login successful");
+        User existsUser = userService.getUserByUsername(user.getUsername());
+        String jwtToken = jwtService.generateToken(existsUser);
+        ResponseDto<TokenDto> response = new ResponseDto<>("Login successful");
         response.setData(new TokenDto(jwtToken));
 
 
