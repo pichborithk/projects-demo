@@ -18,6 +18,7 @@ public class ProductClient {
     private String productUrl;
     private final RestTemplate restTemplate;
 
+    // Fetch purchase products by using RestTemplate, but we also can fetch by using OpenFeign the same as CustomerClient
     public List<PurchaseResponse> purchaseProducts(
         List<PurchaseRequest> requestBody) {
 
