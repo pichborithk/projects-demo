@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   const cart = {};
 
-  async function handlingCheckOut() {
+  async function handlingCheckout() {
     const response = await fetch('http://localhost:1337/checkout', {
       method: 'POST',
       headers: {
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <h1>Home</h1>
-      <button onClick={handlingCheckOut}>Checkout</button>
+      <button onClick={handlingCheckout}>Checkout</button>
     </>
   );
 }
