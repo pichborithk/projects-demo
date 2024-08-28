@@ -1,0 +1,11 @@
+server:
+  port: ${PORT}
+  address: ${ADDRESS}
+
+
+spring:
+  application:
+    name: StripeCheckoutDemo
+
+  config:
+    import: optional:file:.env[.properties]
