@@ -1,0 +1,36 @@
+services:
+  spring-app:
+    container_name: scd-api
+    image: stripe-checkout-demo-api
+    build: ./api
+    environment:
+      - ADDRESS
+      - PORT
+      - STRIPE_API_KEY
+      - CLIENT_URL
+    ports:
+      - "1337:1337"
+    restart: unless-stopped
+    # networks:
+    #   - stripe-checkout-demo-network
+
+  react-app:
+    container_name: scd-client
+    image: stripe-checkout-demo-client
+    build: ./client
+    depends_on:
+      - spring-app
+    environment:
+      - VITE_PORT
+      - VITE_API_URL
+    ports:
+      - "5173:5173"
+    links:
+      - spring-app
+    # networks:
+    #   - stripe-checkout-demo-network
+
+
+# networks:
+#   stripe-checkout-demo-network:
+#     driver: bridge
