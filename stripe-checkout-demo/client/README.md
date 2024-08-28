@@ -1,2 +1,2 @@
 ## Payment Inforamtion Require:
-Card Number: 42424 4242 4242 4242
+Card Number: 4242 4242 4242 4242
