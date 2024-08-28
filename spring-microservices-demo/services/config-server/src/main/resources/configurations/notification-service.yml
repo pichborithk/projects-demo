@@ -20,6 +20,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
+#        spring.json.trusted.packages: dev.pichborith.ecommerce.kafka.order, dev.pichborith.ecommerce.kafka.payment
         spring.json.type.mapping: orderConfirmation:dev.pichborith.ecommerce.kafka.order.OrderConfirmation, paymentConfirmation:dev.pichborith.ecommerce.kafka.payment.PaymentConfirmation
 
   mail:
