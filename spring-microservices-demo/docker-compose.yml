@@ -1,9 +1,9 @@
 services:
   postgresql:
     container_name: ms_pg_sql
-    image: postgres
+    image: postgres:15-bullseye
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
@@ -16,9 +16,9 @@ services:
 
   mongodb:
     container_name: ms_mongo_db
-    image: mongo
+    image: mongo:jammy
     volumes:
-      - mongo:/data
+      - mongo_data:/data
     ports:
       - 27017:27017
     environment:
@@ -100,8 +100,8 @@ networks:
     driver: bridge
 
 volumes:
-  postgres:
-  mongo:
+  postgres_data:
+  mongo_data:
 #  pgadmin:
 
 
